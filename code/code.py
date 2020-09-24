@@ -6,31 +6,36 @@ from PIL import Image
 from scipy import ndimage
 from lr_utils import load_dataset
 
+# Loading in data
 train_set_x_orig, train_set_y, test_set_x_orig, test_set_y, classes = load_dataset()
 
-m_train = 209
-m_test = 50
-num_px = 64
+m_train = 209  # number of training images
+m_test = 50  # number of test images
+num_px = 64  # size of images (64x64x3)
 
+# flattening the 64x64x3 images into vectors
 train_set_x_flatten = train_set_x_orig.reshape(
         train_set_x_orig.shape[0], -1).T
 
 test_set_x_flatten = test_set_x_orig.reshape(
         test_set_x_orig.shape[0], -1).T
 
+# normalising the images (pixel values 0-255)
 train_set_x = train_set_x_flatten / 255
 test_set_x = test_set_x_flatten / 255
 
+# defining the sigmoid function
 def sigmoid(z):
     s = 1 / ( 1 + np.exp(-z) )
     return s
 
+# initializing the weights and bias as 0's
 def initialize_with_zeros(dim):
     w = np.zeros((dim,1))
     b = 0
     return w, b
 
-
+# calculates the cost and gradients
 def propagate(w, b, X, Y):
     m = X.shape[1]
 
