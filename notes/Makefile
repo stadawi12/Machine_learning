@@ -2,5 +2,6 @@ all:
 	pdflatex main.tex
 	pdflatex main.tex
 	pdflatex main.tex
-	rm *.log 
 
+clean:
+	rm *.log *.aux *.pdf
