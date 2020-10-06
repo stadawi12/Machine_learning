@@ -1,0 +1,45 @@
+The loss function which we have mentioned previously was a
+very simplistic function described as the difference between
+the true value and the one given by the sigmoid function.
+
+\begin{equation}
+    \mathscr{L}_{\text{simple}} = |y_{true}^{(i)} - \sigma(y^{(i)}) |.
+\end{equation}
+
+The above is a simplistic function and not the one commonly
+used.
+
+The one that we will use will be slightly more complicated
+but the idea remains, it will still serve as a test for the
+difference between true value and a predicted one.
+
+\begin{equation}
+    \mathscr{L}^{(i)} = -y_{true}^{(i)} \log (a^{(i)}) - (1 - y_{true}^{(i)})
+    \log(1 - a^{(i)}),
+\end{equation}
+
+where $a^{(i)} \equiv \sigma(y^{(i)})$.
+
+Now the cost function reads,
+
+\begin{equation}
+    J = \frac{1}{m} \sum_{i=1}^m \mathscr{L}^{(i)},
+\end{equation}
+
+We need to be able to calculate the derivative of the cost
+function for the purposes of updating our parameters.  It
+turns out the solution is quite simple,
+
+\begin{align}
+    \frac{\partial J}{\partial w} &= 
+    \frac{1}{m}  X(A - Y)^T, \\
+    \frac{\partial J}{\partial b} &=
+    \frac{1}{m}
+    \sum_{i=1}^m (a^{(i)} - y^{(i)}_{\text{t}}),
+\end{align}
+
+where $A = (a^{(1)}, a^{(2)},...,a^{(m)})$ and $Y =
+(y^{(1)}_{\text{t}}, y^{(2)}_{\text{t}},...,
+y^{(m)}_{\text{t}})$ , with 't' standing for true.
+
+hello from loss section 
